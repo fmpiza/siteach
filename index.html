@@ -337,70 +337,106 @@
     <!-- Start  bootstrap-touch-slider Slider -->
    
        
-       <section class="section clients">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-7">
-				
-			</div>
-		</div>
-	</div>
+    
+		<div class="carousel-container">
+    <div class="carousel-track">
+      <!-- Card 1 -->
+      <div class="carousel-item">
+        <img src="diana1.png" alt="Mountain">
+        <div class="card-content">
+          <h3>The Highlands</h3>
+          <p>Discover misty mountain trails and ancient ridges untouched by time.</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="carousel-item">
+        <img src="denis.jpg" alt="Ocean">
+        <div class="card-content">
+          <h3>Deep Oceans</h3>
+          <p>Explore hidden coral reefs and abyssal mysteries beneath the waves.</p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="carousel-item">
+        <img src="agm.png" alt="Desert">
+        <div class="card-content">
+          <h3>Neon City</h3>
+          <p>Immerse your senses in vibrant nightlife and futuristic architectures.</p>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="carousel-item">
+        <img src="staffsach.png" alt="Forest">
+        <div class="card-content">
+          <h3>Mystic Woods</h3>
+          <p>Wander through sun-dappled pathways filled with secret flora.</p>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="carousel-item">
+        <img src="mdsululu1.png" alt="Canyon">
+        <div class="card-content">
+          <h3>Red Canyons</h3>
+          <p>Traverse vast desert landscapes carved by centuries of wind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	<div class="container">
-		<div class="row clients-logo">
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="mkutano.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="childvaccine.jpg" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="tughe.jpg" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="guests.jpg" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="mnh.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="chugaach.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="benjaminilogo.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="mawenzilogo.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="ccbrtlogo.png" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="client-thumb">
-					<img src="moilogo.png" alt="" class="img-fluid">
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- Navigation Buttons -->
+  <div class="controls">
+    <button class="btn" id="prev-btn">&#10094;</button>
+    <button class="btn" id="next-btn">&#10095;</button>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      items.forEach((item, index) => {
+        // Clear previous state classes
+        item.className = 'carousel-item';
+
+        // Calculate relative position with loop wrapping logic
+        let offset = index - currentIndex;
+        
+        // Handle circular wrapping
+        if (offset < -2) offset += items.length;
+        if (offset > 2) offset -= items.length;
+
+        // Assign classes based on relative position
+        if (offset === 0) {
+          item.classList.add('active');
+        } else if (offset === 1) {
+          item.classList.add('next');
+        } else if (offset === -1) {
+          item.classList.add('prev');
+        } else if (offset === 2) {
+          item.classList.add('far-next');
+        } else if (offset === -2) {
+          item.classList.add('far-prev');
+        }
+      });
+    }
+
+    // Event Listeners for Next and Prev controls
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+
+    // Initialize carousel layout on load
+    updateCarousel();
+  </script>
 <section class="features">
 	<div class="container">
 		<div class="row">
